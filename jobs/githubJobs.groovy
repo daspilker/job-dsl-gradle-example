@@ -1,3 +1,8 @@
 import org.kohsuke.github.GitHub
 
-GitHub.connectAnonymously()
+def gh = GitHub.connectAnonymously()
+def org = gh.getOrganization('jenkinsci')
+org.listRepositories().each {
+  println it.name
+}
+
