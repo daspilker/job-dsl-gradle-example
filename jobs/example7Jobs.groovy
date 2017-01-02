@@ -8,23 +8,29 @@ folder(basePath) {
     description 'This example shows how to create jobs using Job builders.'
 }
 
-new GrailsCiJobBuilder(
-    name: "$basePath/grails-project1",
-    description: 'An example using a job builder for a Grails project.',
-    ownerAndProject: 'myorg/project1',
-    emails: developers,
-).build(this)
+def builder = new GrailsCiJobBuilder()
+builder.with {
+    name = "$basePath/grails-project1"
+    description = 'An example using a job builder for a Grails project.'
+    ownerAndProject = 'myorg/project1'
+    emails = developers
+}
+builder.build(this)
 
-new GrailsCiJobBuilder(
-    name: "$basePath/grails-project2",
-    description: 'Another example using a job builder for a Grails project.',
-    ownerAndProject: 'myorg/project2',
-    emails: developers,
-).build(this)
+builder = new GrailsCiJobBuilder()
+builder.with {
+    name = "$basePath/grails-project2"
+    description = 'Another example using a job builder for a Grails project.'
+    ownerAndProject = 'myorg/project2'
+    emails = developers
+}
+builder.build(this)
 
-new GradleCiJobBuilder(
-    name: "$basePath/gradle-project1",
-    description: 'Example job description',
-    ownerAndProject: 'myorg/project3',
-    tasks: 'clean test'
-).build(this)
+builder = new GradleCiJobBuilder()
+builder.with {
+    name = "$basePath/gradle-project1"
+    description = 'Example job description'
+    ownerAndProject = 'myorg/project3'
+    tasks = 'clean test'
+}
+builder.build(this)
